@@ -13,7 +13,12 @@ variable "api_auth_type" {
 }
 
 variable "api_request_config" {
-  type = "list"
+  type = list(object({
+    protocol = string
+    method   = string
+    path     = string
+    mode     = string
+  }))
 
   default = [
     {
@@ -30,7 +35,13 @@ variable "api_service_type" {
 }
 
 variable "api_http_service_config" {
-  type = "list"
+  type = list(object({
+    address   = string
+    method    = string
+    path      = string
+    timeout   = number
+    aone_name = string
+  }))
 
   default = [
     {
@@ -44,7 +55,14 @@ variable "api_http_service_config" {
 }
 
 variable "api_request_parameters" {
-  type = "list"
+  type = list(object({
+    name         = string
+    type         = string
+    required     = string
+    in           = string
+    in_service   = string
+    name_service = string
+  }))
 
   default = [
     {
@@ -59,7 +77,7 @@ variable "api_request_parameters" {
 }
 
 variable "api_stage_name" {
-  type = "list"
+  type = list(string)
 
   default = [
     "RELEASE",
@@ -71,3 +89,4 @@ variable "api_stage_name" {
 variable "group" {
   description = "The ID of the group"
 }
+

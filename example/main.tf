@@ -9,7 +9,7 @@ module "api_group" {
 module "api" {
   source = "../modules/api"
 
-  group = "${module.api_group.api_group_id}"
+  group = module.api_group.api_group_id
 
   api_name = "TerraformApiGatewayApi"
 
@@ -55,3 +55,4 @@ module "api" {
     "TEST",
   ]
 }
+

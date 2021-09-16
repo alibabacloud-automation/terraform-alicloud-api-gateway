@@ -100,7 +100,7 @@ You can use this in your terraform template with the following steps.
 
 Authors
 -------
-Created and maintained by Lenny Bai(@[geeklenny](https://github.com/geeklenny) lennybai@live.cn)
+Created and maintained by Alibaba Cloud Terraform Team(terraform@alibabacloud.com)
 
 Reference
 ---------

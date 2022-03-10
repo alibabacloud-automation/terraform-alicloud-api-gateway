@@ -9,4 +9,3 @@ output "api_group_name" {
 output "api_group_description" {
   value = alicloud_api_gateway_group.apiGatewayGroup.description
 }
-

@@ -59,4 +59,3 @@ resource "alicloud_api_gateway_api" "apiGatewayApi" {
 
   stage_names = var.api_stage_name
 }
-

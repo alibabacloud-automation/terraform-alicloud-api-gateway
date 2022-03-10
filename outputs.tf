@@ -15,7 +15,6 @@ output "this_api_group_description" {
 }
 
 # ApiGateway api outputs
-
 output "this_api_name" {
   value = module.api.api_name
 }
@@ -47,4 +46,3 @@ output "this_api_request_parameters" {
 output "this_api_stage_name" {
   value = module.api.api_stage_name
 }
-

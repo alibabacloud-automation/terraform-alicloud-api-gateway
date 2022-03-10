@@ -1,20 +1,27 @@
+# ApiGateway api group variables
+variable "api_group_name" {
+  description = "The name of a api group."
+  type        = string
+  default     = "tf_testacc_group"
+}
+
+variable "api_group_description" {
+  description = "The description of the api gateway group."
+  type        = string
+  default     = "tf-testacc-group-description"
+}
+
 # ApiGateway api variables
 variable "api_name" {
   description = "The name of a api."
   type        = string
-  default     = ""
-}
-
-variable "group" {
-  description = "The ID of the group"
-  type        = string
-  default     = ""
+  default     = "tf_testacc_api"
 }
 
 variable "api_description" {
   description = "The description of the api."
   type        = string
-  default     = ""
+  default     = "tf-testacc-api-description"
 }
 
 variable "api_auth_type" {
@@ -31,13 +38,14 @@ variable "api_request_config" {
     path     = string
     mode     = string
   }))
-  default = []
-}
-
-variable "api_service_type" {
-  description = "The type of backend service."
-  type        = string
-  default     = "HTTP"
+  default = [
+    {
+      protocol = "HTTP"
+      method   = "GET"
+      path     = "/test/path"
+      mode     = "MAPPING"
+    },
+  ]
 }
 
 variable "api_http_service_config" {
@@ -49,7 +57,15 @@ variable "api_http_service_config" {
     timeout   = number
     aone_name = string
   }))
-  default = []
+  default = [
+    {
+      address   = "http://apigateway-backend.alicloudapi.com:8080"
+      method    = "GET"
+      path      = "/web/cloudapi"
+      timeout   = 12
+      aone_name = "cloudapi-openapi"
+    },
+  ]
 }
 
 variable "api_request_parameters" {
@@ -62,15 +78,22 @@ variable "api_request_parameters" {
     in_service   = string
     name_service = string
   }))
-  default = []
+  default = [
+    {
+      name         = "test"
+      type         = "STRING"
+      required     = "REQUIRED"
+      in           = "QUERY"
+      in_service   = "QUERY"
+      name_service = "testparams"
+    },
+  ]
 }
 
 variable "api_stage_name" {
   description = "Stages that the api need to be deployed."
   type        = list(string)
   default = [
-    "RELEASE",
-    "PRE",
-    "TEST",
+    "RELEASE"
   ]
 }

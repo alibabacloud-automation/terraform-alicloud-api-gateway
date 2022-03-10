@@ -33,5 +33,3 @@ output "api_request_parameters" {
 output "api_stage_name" {
   value = alicloud_api_gateway_api.apiGatewayApi.stage_names
 }
-
-

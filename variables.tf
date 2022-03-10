@@ -1,55 +1,59 @@
-# ApiGateway api group variables
 variable "region" {
   description = "(Deprecated from version 1.2.0) The region used to launch this module resources."
   default     = ""
 }
 
+# ApiGateway api group variables
 variable "api_group_name" {
-  default = "TerraformApiGatewayGroup"
+  description = "The name of a api group."
+  type        = string
+  default     = ""
 }
 
 variable "api_group_description" {
-  description = "The name of a api group."
-  default     = "Module of APi gateway Group"
+  description = "The description of the api gateway group."
+  type        = string
+  default     = ""
 }
 
 # ApiGateway api variables
-
 variable "api_name" {
-  default = "TerraformApiGatewayApi"
+  description = "The name of a api."
+  type        = string
+  default     = ""
 }
 
 variable "api_description" {
-  default = "description"
+  description = "The description of the api."
+  type        = string
+  default     = ""
 }
 
 variable "api_auth_type" {
-  default = "APP"
+  description = "The authorization Type including APP and ANONYMOUS."
+  type        = string
+  default     = "APP"
 }
 
 variable "api_request_config" {
+  description = "Request_config defines how users can send requests to your API."
   type = list(object({
     protocol = string
     method   = string
     path     = string
     mode     = string
   }))
-
-  default = [
-    {
-      protocol = "HTTP"
-      method   = "GET"
-      path     = "/test/path1"
-      mode     = "MAPPING"
-    },
-  ]
+  default = []
 }
 
 variable "api_service_type" {
-  default = "HTTP"
+  description = "The type of backend service."
+  type        = string
+  default     = "HTTP"
 }
 
 variable "api_http_service_config" {
+  description = "http_service_config defines the config when service_type selected 'HTTP'."
   type = list(object({
     address   = string
     method    = string
@@ -57,19 +61,11 @@ variable "api_http_service_config" {
     timeout   = number
     aone_name = string
   }))
-
-  default = [
-    {
-      address   = "http://apigateway-backend.alicloudapi.com:8080"
-      method    = "GET"
-      path      = "/web/cloudapi"
-      timeout   = 12
-      aone_name = "cloudapi-openapi"
-    },
-  ]
+  default = []
 }
 
 variable "api_request_parameters" {
+  description = "request_parameters defines the request parameters of the api."
   type = list(object({
     name         = string
     type         = string
@@ -78,26 +74,15 @@ variable "api_request_parameters" {
     in_service   = string
     name_service = string
   }))
-
-  default = [
-    {
-      name         = "test"
-      type         = "STRING"
-      required     = "REQUIRED"
-      in           = "QUERY"
-      in_service   = "QUERY"
-      name_service = "testparams"
-    },
-  ]
+  default = []
 }
 
 variable "api_stage_name" {
-  type = list(string)
-
+  description = "Stages that the api need to be deployed."
+  type        = list(string)
   default = [
     "RELEASE",
     "PRE",
     "TEST",
   ]
 }
-

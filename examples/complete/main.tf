@@ -1,3 +1,7 @@
+provider "alicloud" {
+  region = "cn-beijing"
+}
+
 module "api_gateway" {
   source = "../.."
 

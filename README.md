@@ -11,62 +11,72 @@ These types of resources are supported:
 
 Usage
 -----
+
+<div style="display: block;margin-bottom: 40px;"><div class="oics-button" style="float: right;position: absolute;margin-bottom: 10px;">
+  <a href="https://api.aliyun.com/terraform?source=Module&activeTab=document&sourcePath=terraform-alicloud-modules%3A%3Aapi-gateway&spm=docs.m.terraform-alicloud-modules.api-gateway&intl_lang=EN_US" target="_blank">
+    <img alt="Open in AliCloud" src="https://img.alicdn.com/imgextra/i1/O1CN01hjjqXv1uYUlY56FyX_!!6000000006049-55-tps-254-36.svg" style="max-height: 44px; max-width: 100%;">
+  </a>
+</div></div>
+
 You can use this in your terraform template with the following steps.
 
 1. Adding a module resource to your template, e.g. main.tf
 
-        module "apigateway" {
-           source = "terraform-alicloud-modules/api-gateway/alicloud"
+```hcl
+module "apigateway" {
+  source = "terraform-alicloud-modules/api-gateway/alicloud"
 
-           # ApiGateway api group variables
-           api_group_name = "TerraformApiGatewayGroup"
+  # ApiGateway api group variables
+  api_group_name = "TerraformApiGatewayGroup"
 
-           api_group_description = "Module of APi gateway Group"
+  api_group_description = "Module of APi gateway Group"
 
-           # ApiGateway api variables
-           api_name = "TerraformApiGatewayApi"
+  # ApiGateway api variables
+  api_name = "TerraformApiGatewayApi"
 
-           api_description = "description"
+  api_description = "description"
 
-           api_auth_type = "APP"
+  api_auth_type = "APP"
 
-           api_request_config = [
-               {
-                 protocol = "HTTP"
-                 method   = "GET"
-                 path     = "/test/path1"
-                 mode     = "MAPPING"
-               }
-             ]
+  api_request_config = [
+      {
+        protocol = "HTTP"
+        method   = "GET"
+        path     = "/test/path1"
+        mode     = "MAPPING"
+      }
+    ]
 
-           api_service_type = "HTTP"
+  api_service_type = "HTTP"
 
-           api_http_service_config = [
-               {
-                 address   = "http://apigateway-backend.alicloudapi.com:8080"
-                 method    = "GET"
-                 path      = "/web/cloudapi"
-                 timeout   = 12
-                 aone_name = "cloudapi-openapi"
-               }
-             ]
+  api_http_service_config = [
+      {
+        address   = "http://apigateway-backend.alicloudapi.com:8080"
+        method    = "GET"
+        path      = "/web/cloudapi"
+        timeout   = 12
+        aone_name = "cloudapi-openapi"
+      }
+    ]
 
-           api_request_parameters = [
-               {
-                 name         = "test"
-                 type         = "STRING"
-                 required     = "REQUIRED"
-                 in           = "QUERY"
-                 in_service   = "QUERY"
-                 name_service = "testparams"
-               }
-             ]
+  api_request_parameters = [
+      {
+        name         = "test"
+        type         = "STRING"
+        required     = "REQUIRED"
+        in           = "QUERY"
+        in_service   = "QUERY"
+        name_service = "testparams"
+      }
+    ]
 
-           api_stage_name = [
-             "RELEASE",
-             "PRE",
-             "TEST"
-            ]
+  api_stage_name = [
+    "RELEASE",
+    "PRE",
+    "TEST"
+  ]
+}
+```
 
 2. Setting values for the following variables:
 
@@ -76,27 +86,27 @@ You can use this in your terraform template with the following steps.
     - ALICLOUD_SECRET_KEY
     - ALICLOUD_REGION
 
-    ## Inputs
+## Inputs
 
-    | Name | Description | Type | Default | Required |
-    |------|-------------|:----:|:-----:|:-----:|
-    |api_name          |  The name of the api gateway api.   |   string  |    ""   |    yes       |
-    |api_description          |  The description of the api.    |   string  |    ""   |    no       |
-    |api_auth_type          |  The authorization Type including APP and ANONYMOUS.  |   string  |   "" |    yes       |
-    |api_request_config    |  Request_config defines how users can send requests to your API.   |   list  |   ""  |    yes       |
-    |api_service_type               |  The type of backend service. Type including HTTP,VPC and MOCK.   |   list  |    ""   |    yes       |
-    |api_http_service_config               |  http_service_config defines the config    |   list  |    ""   |    yes       |
-    |api_request_parameters               |  Request_parameters defines .   |   list  |    ""   |    no       |
-    |api_stage_names               |  Stages that the api need to be deployed. Valid value: RELEASE，PRE and TEST.   |   list  |    ""   |    no       |
-    |api_group_name          |  The name of the api gateway group.   |   string  |    ""   |    yes       |
-    |api_group_description          |  The description of the api group.    |   string  |    ""   |    no       |
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+|api_name          |  The name of the api gateway api.   |   string  |    ""   |    yes       |
+|api_description          |  The description of the api.    |   string  |    ""   |    no       |
+|api_auth_type          |  The authorization Type including APP and ANONYMOUS.  |   string  |   "" |    yes       |
+|api_request_config    |  Request_config defines how users can send requests to your API.   |   list  |   ""  |    yes       |
+|api_service_type               |  The type of backend service. Type including HTTP,VPC and MOCK.   |   list  |    ""   |    yes       |
+|api_http_service_config               |  http_service_config defines the config    |   list  |    ""   |    yes       |
+|api_request_parameters               |  Request_parameters defines .   |   list  |    ""   |    no       |
+|api_stage_names               |  Stages that the api need to be deployed. Valid value: RELEASE，PRE and TEST.   |   list  |    ""   |    no       |
+|api_group_name          |  The name of the api gateway group.   |   string  |    ""   |    yes       |
+|api_group_description          |  The description of the api group.    |   string  |    ""   |    no       |
 
-    ## Outputs
+## Outputs
 
-    | Name | Description |
-    |------|-------------|
-    | this_api_id    |     the ID of api-gateway API        |
-    | this_api_group_id    |     the ID of api-gateway API  Group      |
+| Name | Description |
+|------|-------------|
+| this_api_id    |     the ID of api-gateway API        |
+| this_api_group_id    |     the ID of api-gateway API  Group      |
 
 ## Notes
 From the version v1.2.0, the module has removed the following `provider` setting:

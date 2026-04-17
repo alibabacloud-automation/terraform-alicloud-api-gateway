@@ -1,11 +1,14 @@
 output "api_group_id" {
-  value = alicloud_api_gateway_group.apiGatewayGroup.id
+  description = "API Gateway Group ID"
+  value       = alicloud_api_gateway_group.apiGatewayGroup.id
 }
 
 output "api_group_name" {
-  value = alicloud_api_gateway_group.apiGatewayGroup.name
+  description = "API Gateway Group Name"
+  value       = alicloud_api_gateway_group.apiGatewayGroup.name
 }
 
 output "api_group_description" {
-  value = alicloud_api_gateway_group.apiGatewayGroup.description
+  description = "API Gateway Group Description"
+  value       = alicloud_api_gateway_group.apiGatewayGroup.description
 }

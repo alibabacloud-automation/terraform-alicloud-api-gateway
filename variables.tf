@@ -1,7 +1,3 @@
-variable "region" {
-  description = "(Deprecated from version 1.2.0) The region used to launch this module resources."
-  default     = ""
-}
 
 # ApiGateway api group variables
 variable "api_group_name" {
